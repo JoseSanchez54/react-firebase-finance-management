@@ -12,8 +12,8 @@ export default function FormUI({
         minLength="3"
         placeholder={
           type !== "earnings" && type !== "job" && type !== "roi"
-            ? "Expense name"
-            : "Earning name"
+            ? "Nombre del gasto"
+            : "Nombre del ingreso"
         }
         id="name"
         value={valueData.name}
@@ -52,7 +52,7 @@ export default function FormUI({
 
         <button type="reset" className="delete" onClick={handleReset}>
           {" "}
-          {valueData.id ? "Cancel" : "Reset"}
+          {valueData.id ? "Cancelar" : "Resetear"}
         </button>
       </div>
     </form>
