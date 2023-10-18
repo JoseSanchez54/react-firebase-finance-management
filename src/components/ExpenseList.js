@@ -34,8 +34,8 @@ export default function ExpenseList({
   useEffect(() => {
     const query =
       monthActive === "all"
-        ? `/users/${auth.currentUser.email}/${type}/${yearActive}`
-        : `/users/${auth.currentUser.email}/${type}/${yearActive}/${monthActive}`;
+        ? `/users/${auth.currentUser.uid}/${type}/${yearActive}`
+        : `/users/${auth.currentUser.uid}/${type}/${yearActive}/${monthActive}`;
 
     onValue(ref(db, query), (snapshot) => {
       setData([]);
@@ -67,7 +67,7 @@ export default function ExpenseList({
         monthActive === "all"
           ? parseInt(editData.date.slice(5, 7))
           : monthActive,
-      expensePath = `/users/${auth.currentUser.email}/${type}/${yearActive}/${queryMonth}/${expenseId}`;
+      expensePath = `/users/${auth.currentUser.uid}/${type}/${yearActive}/${queryMonth}/${expenseId}`;
 
     const updateExpense = {
       id: expenseId,
@@ -80,9 +80,9 @@ export default function ExpenseList({
     if (editData.date.slice(0, 7) !== existingExpense.date.slice(0, 7)) {
       const oldQueryMonth = parseInt(existingExpense.date.slice(5, 7)),
         oldQueryYear = yearActive,
-        oldExpensePath = `/users/${auth.currentUser.email}/${type}/${oldQueryYear}/${oldQueryMonth}/${expenseId}`,
+        oldExpensePath = `/users/${auth.currentUser.uid}/${type}/${oldQueryYear}/${oldQueryMonth}/${expenseId}`,
         newExpensePath = `/users/${
-          auth.currentUser.email
+          auth.currentUser.uid
         }/${type}/${editData.date.slice(0, 4)}/${editData.date.slice(5, 7)}/${
           editData.id
         }`;
@@ -113,7 +113,7 @@ export default function ExpenseList({
     const expenseId = e.target.id,
       expenseMonth = parseInt(e.target.attributes["data-value"].nodeValue),
       queryMonth = monthActive === "all" ? expenseMonth : monthActive,
-      expensePath = `/users/${auth.currentUser.email}/${type}/${yearActive}/${queryMonth}/${expenseId}`;
+      expensePath = `/users/${auth.currentUser.uid}/${type}/${yearActive}/${queryMonth}/${expenseId}`;
 
     if (window.confirm(`Quieres eliminarlo?`)) {
       remove(ref(db, expensePath))

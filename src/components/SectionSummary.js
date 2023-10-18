@@ -32,7 +32,7 @@ export default function SectionSummary() {
   };
 
   useEffect(() => {
-    const query = `/users/${auth.currentUser.email}`;
+    const query = `/users/${auth.currentUser.uid}`;
     onValue(ref(db, query), (snapshot) => {
       setUserData();
       setTypes([]);
