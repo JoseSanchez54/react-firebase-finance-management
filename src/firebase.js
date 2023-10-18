@@ -9,6 +9,8 @@ const firebaseConfig = {
   storageBucket: "gestor-7fa0d.appspot.com",
   messagingSenderId: "637785696793",
   appId: "1:637785696793:web:860ee1cfb75d17130fd888",
+  databaseURL:
+    "https://gestor-7fa0d-default-rtdb.europe-west1.firebasedatabase.app/",
 };
 
 const app = initializeApp(firebaseConfig);
